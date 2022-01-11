@@ -1,0 +1,11 @@
+﻿Scaffold-DbContext "Server=KG-5CD938H658-U\SQLEXPRESS;Database=DbProjectWork;User ID=sqlbruker;Password=P@ssw0rd;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DbProjectWorkDbContext -Tables Project
+- gjør ikke dette da interfacet fra applicationcore ikke får tak i tabellen (Project) fra Data.
+
+Migration:
+Første gangen:
+Add-Migration ProjectWork.Data.DbProjectWorkContext
+update-database
+
+Deretter
+Add-Migration DatabaseCompleteV.2.0.0
+update-database

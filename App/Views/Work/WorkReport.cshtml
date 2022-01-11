@@ -1,0 +1,62 @@
+﻿@model IEnumerable<App.Models.WorkResponseModel>
+@{
+    ViewData["Title"] = "Project Work - Projects";
+}
+
+<div class="text-center">
+    <h1 class="display-4">My work report</h1>
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <table class="table table-responsive" style="width:900px">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProjectName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MinutesOfWork)
+                    </th>
+
+
+                </tr>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MinutesOfWork)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        @{
+            if(@Model.Count() > 0)
+            {
+               <form asp-action="DeleteAllMyWork">
+                    <input type="submit" value="Clear report" class="btn btn-danger" />
+                </form>
+            }
+        }
+        
+        <p class="alert-danger">
+            @ViewBag.StatusError
+        </p>
+        <p class="alert-success">
+            @ViewBag.StatusSuccess
+        </p>
+    </div>
+</div>

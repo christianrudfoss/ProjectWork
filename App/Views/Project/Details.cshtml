@@ -1,0 +1,107 @@
+﻿@model App.Models.ProjectResponseModel
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+	<h4>Project</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.ProjectName)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.ProjectName)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.CustomerName)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.CustomerName)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.CreatedDate)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.CreatedDate)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.CreatedBy)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.CreatedBy)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.StartDate)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.StartDate)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.EndDate)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.EndDate)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.IsComplete)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.IsComplete)
+		</dd>
+
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Works)
+		</dt>
+		<dd class="col-sm-10">
+			<table class="table">
+				<tr>
+					<th>Consultent</th>
+					<th>Description</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Minutes of work</th>
+					<th>Created Date</th>
+				</tr>
+				@if (Model != null && Model.Works != null)
+				{
+					foreach (var item in Model.Works)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.User.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Description)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem =>item.Start)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem =>item.End)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem =>item.MinutesOfWork)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem =>item.CreatedDate)
+							</td>
+							<td>
+								<a asp-controller="Work" asp-action = "Edit" asp-route-id="@item.Id">Edit</a> | 
+								<a asp-controller="Work" asp-action = "Details" asp-route-id="@item.Id">Details</a> | 
+								<a asp-controller="Work" asp-action = "Remove" asp-route-id="@item.Id">Delete</a>
+							</td>
+						</tr>
+					}
+				}
+			</table>
+		</dd>
+	</dl>
+</div>
+<div>
+	<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-controller="Project" asp-action="Projects">Projects</a>
+</div>

@@ -1,0 +1,13 @@
+﻿@model App.Models.WorkResponseModel
+
+@{
+    if (@Model != null)
+    {
+        <form asp-controller="Work" asp-action="StopWork" asp-route-urlFull = "@Context.Request.Path">
+            <input type="hidden" asp-for="UserId" />
+
+            <span style="color:green;" class="font-weight-bold">Active: @Model.Project.ProjectName </span>
+            <input type="submit" value="End work" class="btn btn-danger" />
+        </form>
+    }
+}

@@ -1,0 +1,92 @@
+﻿@model App.Models.UserResponseModel
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+	<h4>User</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.CreatedDate)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.CreatedDate)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.CreatedBy)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.CreatedBy)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Password)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Password)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Gender)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Gender)
+		</dd>
+
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Work)
+		</dt>
+		<dd class="col-sm-10">
+			<table class="table">
+				<tr>
+					<th>Customer</th>
+					<th>Project</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Minutes of work</th>
+				</tr>
+				@if (Model != null && Model.Work != null)
+				{
+					foreach (var item in Model.Work)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Project.CustomerName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Project.ProjectName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem =>item.Start)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem =>item.End)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem =>item.MinutesOfWork)
+							</td>
+						</tr>
+					}
+				}
+			</table>
+		</dd>
+	</dl>
+</div>
+<div>
+	<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-controller="Project" asp-action="Projects">Projects</a>
+</div>
